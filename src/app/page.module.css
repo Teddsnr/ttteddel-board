@@ -1,141 +1,301 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+/**
+ * File Name: page.module.css
+ * Location: src/app/page.module.css
+ * Purpose: Updated to use REAL IMAGES (Wall.png and Board.png) for the background.
+ */
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+.container {
   display: flex;
-  min-height: 100vh;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- Header Section (Unchanged) --- */
+.header {
+  flex: none;
+  z-index: 30;
+  background-color: #1e293b;
+  border-bottom: 4px solid #3b82f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .headerContent {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.logoArea {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  gap: 1rem;
 }
 
-.main {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+.brandName {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-transform: uppercase;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
+.tagline {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
   font-weight: 500;
-  color: var(--text-primary);
 }
 
-.ctas {
+.controls {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .controls {
+    width: auto;
+  }
+}
+
+.searchBox {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+.searchInput {
+  width: 100%;
+  background-color: #334155;
+  border: 1px solid #475569;
+  color: #ffffff;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  border-color: #3b82f6;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  width: 16px;
+  height: 16px;
+}
+
+.pinButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  width: fit-content;
+  transition: all 0.2s;
+  white-space: nowrap;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.pinButton:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* --- Main Canvas (The Wall) --- */
+.mainCanvas {
+  flex: 1;
+  overflow: hidden; 
+  position: relative;
+  /* Use the physical Wall image */
+  background-image: url('/Wall.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2rem 0 2rem; 
+}
+
+/* --- TAB NAVIGATION (Stacked Bookmarks) --- */
+.categoryTabs {
+  display: flex;
+  align-items: flex-end;
+  width: 100%; 
+  padding: 0 0.5rem;
+  overflow: visible; 
+  margin-bottom: -10px; 
+  z-index: 10;
+}
+
+.tabBtn {
+  position: relative;
+  flex: 1; 
+  min-width: 0; 
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 0.5rem;
+  
+  background-color: #e2e8f0; 
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  
+  margin-left: -12px; 
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+  
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tabBtn:first-child {
+  margin-left: 0;
+}
+
+.tabBtn:hover {
+  background-color: #cbd5e1;
+  z-index: 50 !important; 
+}
+
+/* Active State */
+.activeTab {
+  background-color: white !important;
+  color: #1e293b;
+  border-top: 4px solid var(--tab-color);
+  /* Use transparent or matching color to blend with Board image top edge if needed */
+  border-bottom: 1px solid #e2e8f0; 
+  
+  flex: 0 0 auto !important;
+  min-width: fit-content !important; 
+  
+  z-index: 100 !important;
+  transform: translateY(-8px); 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  opacity: 1;
+}
+
+.tabDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tabLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tabCount {
+  font-size: 0.7rem;
+  background: rgba(0,0,0,0.1);
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: auto; 
+  flex-shrink: 0;
+}
+
+/* Mobile Optimization */
+@media (max-width: 900px) {
+  .tabBtn:not(.activeTab) {
+    flex: 0 0 auto; 
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .tabBtn:not(.activeTab) .tabLabel,
+  .tabBtn:not(.activeTab) .tabCount {
+    display: none; 
+  }
+}
+
+/* --- THE REALISTIC CORK BOARD --- */
+.boardContent {
+  flex: 1;
+  
+  /* Use the physical Board image */
+  background-image: url('/Board.png');
+  /* Stretch to fill container, maintaining frame edges at corners */
+  background-size: 100% 100%; 
+  background-repeat: no-repeat;
+  
+  /* Remove CSS border since the image has a frame */
+  border: none;
+  
+  /* Add padding to ensure notes don't overlap the image's frame */
+  padding: 3rem; 
+  
+  /* Drop shadow for the board hanging on the wall */
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
+  
+  position: relative;
+  z-index: 5;
+  overflow-y: auto;
+  margin-bottom: 2rem;
+}
+
+/* Grid Layout for Notes */
+.notesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding-bottom: 4rem;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #5d4037; /* Dark brown to be readable on cork */
+  font-style: italic;
   font-weight: 500;
+  gap: 1rem;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+/* Scrollbar styling for the board */
+.boardContent::-webkit-scrollbar {
+  width: 10px;
 }
-
-a.secondary {
-  border-color: var(--button-secondary-border);
+.boardContent::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
 }
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
+.boardContent::-webkit-scrollbar-thumb {
+  background: #a1887f; /* Wood-like scroll thumb */
+  border-radius: 5px;
+  border: 2px solid #d1bfa7; /* Contrast border */
 }
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
+.boardContent::-webkit-scrollbar-thumb:hover {
+  background: #8d6e63;
 }

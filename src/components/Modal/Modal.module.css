@@ -1,0 +1,282 @@
+/**
+ * File Name: Modal.module.css
+ * Location: src/components/Modal/Modal.module.css
+ * Purpose: Updated styles to match the Professional Whiteboard theme (Navy/Blue/Clean White).
+ */
+
+/* --- Common Backdrop --- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.7); /* Dark Slate overlay */
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+/* --- Form Modal Specifics --- */
+.formContainer {
+  background-color: #ffffff; /* Clean White */
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  border: 1px solid #e2e8f0;
+}
+
+.formHeader {
+  background-color: #1e293b; /* Professional Navy */
+  color: white;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #3b82f6; /* Blue Accent */
+}
+
+.formTitle {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.closeBtn:hover {
+  color: white;
+}
+
+.formBody {
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b; /* Slate-500 */
+  letter-spacing: 0.05em;
+}
+
+.input, .textarea, .select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #334155;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.input:focus, .textarea:focus, .select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: white;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #3b82f6; /* Vibrant Blue */
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4);
+}
+
+.submitBtn:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --- Detail Modal (Lighthouse Effect) --- */
+.detailContainer {
+  position: relative;
+  background-color: white;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 4px;
+  /* Cleaner shadow */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); 
+  transform: rotate(0deg); /* Straightened for professional look, or keep slight tilt */
+  animation: zoomIn 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.detailCloseBtn {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  background-color: #ef4444;
+  color: white;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid white;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 10;
+  transition: transform 0.2s;
+}
+
+.detailCloseBtn:hover {
+  transform: scale(1.1);
+}
+
+.detailContent {
+  padding: 2.5rem;
+}
+
+/* Simplified Pin Hole */
+.pinHole {
+  width: 14px;
+  height: 14px;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 50%;
+  margin: 0 auto 2rem auto;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.detailLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .detailLayout {
+    flex-direction: row;
+  }
+}
+
+.textContent {
+  flex: 1;
+}
+
+.detailTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: 'Segoe UI', sans-serif;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: #1e293b;
+}
+
+.detailDesc {
+  white-space: pre-wrap;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Keep font for the note content itself */
+  color: #334155;
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+.imageArea {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .imageArea {
+    width: 40%;
+  }
+}
+
+.detailImage {
+  width: 100%;
+  height: auto;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transform: rotate(2deg);
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #cbd5e1;
+}
+
+@media (min-width: 600px) {
+  .contactGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.warningBox {
+  margin-top: 2rem;
+  background-color: #fffbeb; /* Light yellow background */
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #b45309; /* Dark yellow text */
+  border: 1px solid #fcd34d;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
